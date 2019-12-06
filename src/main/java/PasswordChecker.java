@@ -25,6 +25,7 @@ public class PasswordChecker{
             Matcher specialCharExists = specialChar.matcher(password);
 
             // if statement not working as should
+
             // Program not displaying relevant error message
 //            if(!lowerExists.find()){
 //                System.out.println("Please enter a lower case");

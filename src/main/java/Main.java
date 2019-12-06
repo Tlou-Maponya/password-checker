@@ -8,8 +8,8 @@ public class Main {
 
         //input password from user
         System.out.println("Please enter your password: ");
-        System.out.println("Password should be between greater than 8 characters");
-        System.out.println("and should consist of atleast 1 Special character, 1 uppercase, 1 lowercase and a number: ");
+        System.out.println("(Password should be between greater than 8 characters");
+        System.out.println("and should consist of atleast 1 Special character, 1 uppercase, 1 lowercase and a number) ");
         Scanner input = new Scanner(System.in);
         String password = input.nextLine();
 
