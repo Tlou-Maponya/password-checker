@@ -4,6 +4,8 @@ import java.util.regex.Pattern;
 
 public class PasswordChecker{
 
+    public static int counter = 6;
+
     public  boolean isPasswordValid(String password){
 
         if(password.length() > 8 && password != null)
@@ -27,28 +29,40 @@ public class PasswordChecker{
             // if statement not working as should
 
             // Program not displaying relevant error message
-//            if(!lowerExists.find()){
-//                System.out.println("Please enter a lower case");
-//            }
-//
-//            if(!upperExists.find()){
-//                System.out.println("Please enter an Upper case");
-//            }
-//
-//            if(!digitExists.find()){
-//                System.out.println("Please enter a digit");
-//            }
-//
-//            if(!specialCharExists.find()){
-//                System.out.println("Please enter a special character");
-//            }
+            if(!lowerExists.find()){
+                System.out.println("Password should have at least one lowercase letter");
+                counter--;
+            }
+
+             if(!upperExists.find()){
+                System.out.println("Password should have at least one uppercase letter");
+                counter--;
+            }
+
+             if(!digitExists.find()){
+                System.out.println("Password should at least have one digit");
+                counter--;
+            }
+
+             if(!specialCharExists.find()){
+                System.out.println("Password should have at least one special character");
+                counter--;
+            }
 
             return lowerExists.find() && upperExists.find() && digitExists.find() && specialCharExists.find();
 
         }
         else {
-            System.out.println("Please enter characters greater than 8");
+            System.out.println("Password should be longer than than 8 characters");
             return false;
         }
+
     }
+
+    public void passwordIsOk(){
+        if(counter >= 3) {
+            System.out.println("Password is okay");
+        }
+    }
+
 }
