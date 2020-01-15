@@ -4,53 +4,43 @@ import java.util.regex.Pattern;
 
 public class PasswordChecker{
 
-    public static int counter = 6;
-
     public  boolean isPasswordValid(String password){
-
-        if(password.length() > 8 && password != null)
-        {
-            /* Pattern Class
+                    /* Pattern Class
                 compiles the given regex and returns the instance of the Pattern.
             */
-            Pattern lowerCase = Pattern.compile("[a-z]");                           //  a through z or A through Z, inclusive (range)
-            Pattern upperCase = Pattern.compile("[A-Z]");
-            Pattern digit = Pattern.compile("[0-9]");                                   //  Any digits, short of [0-9]  alternative ("/d")
-            Pattern specialChar = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");     //
+        Pattern lowerCase = Pattern.compile("[a-z]");                           //  a through z or A through Z, inclusive (range)
+        Pattern upperCase = Pattern.compile("[A-Z]");
+        Pattern digit = Pattern.compile("[0-9]");                                   //  Any digits, short of [0-9]  alternative ("/d")
+        Pattern specialChar = Pattern.compile ("[!@,.#$%&*()_+=|<>?{}\\[\\]~-]");     //
 
             /* Matcher Class
                creates a matcher that matches the given input with the pattern.
             */
-            Matcher lowerExists = lowerCase.matcher(password);
-            Matcher upperExists = upperCase.matcher(password);
-            Matcher digitExists = digit.matcher(password);
-            Matcher specialCharExists = specialChar.matcher(password);
+        Matcher lowerExists = lowerCase.matcher(password);
+        Matcher upperExists = upperCase.matcher(password);
+        Matcher digitExists = digit.matcher(password);
+        Matcher specialCharExists = specialChar.matcher(password);
 
-            // if statement not working as should
-
-            // Program not displaying relevant error message
+        if(password.length() > 8 && password != null)
+        {
+            // Program should display relevant error message
             if(!lowerExists.find()){
-                System.out.println("Password should have at least one lowercase letter");
-                counter--;
+                throw new IllegalArgumentException("Password should have at least one lowercase letter");
             }
 
              if(!upperExists.find()){
-                System.out.println("Password should have at least one uppercase letter");
-                counter--;
+                 throw new IllegalArgumentException("Password should have at least one uppercase letter");
             }
 
              if(!digitExists.find()){
-                System.out.println("Password should at least have one digit");
-                counter--;
+                 throw new IllegalArgumentException("Password should at least have one digit");
             }
 
              if(!specialCharExists.find()){
-                System.out.println("Password should have at least one special character");
-                counter--;
+                 throw new IllegalArgumentException("Password should have at least one special character");
             }
 
-            return lowerExists.find() && upperExists.find() && digitExists.find() && specialCharExists.find();
-
+            return true;
         }
         else {
             System.out.println("Password should be longer than than 8 characters");
@@ -59,10 +49,30 @@ public class PasswordChecker{
 
     }
 
-    public void passwordIsOk(){
-        if(counter >= 3) {
-            System.out.println("Password is okay");
-        }
-    }
+    // Redundancy due to code requirements
+    public boolean passwordIsOk(String password) {
+        boolean bool = false;
+        /* Pattern Class
+            compiles the given regex and returns the instance of the Pattern.
+        */
+        Pattern lowerCase = Pattern.compile("[a-z]");                           //  a through z or A through Z, inclusive (range)
+        Pattern upperCase = Pattern.compile("[A-Z]");
+        Pattern digit = Pattern.compile("[0-9]");                                   //  Any digits, short of [0-9]  alternative ("/d")
+        Pattern specialChar = Pattern.compile ("[!@#$%&*()_+=|<>?{}\\[\\]~-]");     //
 
+        /* Matcher Class
+            creates a matcher that matches the given input with the pattern.
+        */
+        Matcher lowerExists = lowerCase.matcher(password);
+        Matcher upperExists = upperCase.matcher(password);
+        Matcher digitExists = digit.matcher(password);
+        Matcher specialCharExists = specialChar.matcher(password);
+
+        if(password.length() > 8 && password != null){
+            if(specialCharExists.find() || lowerExists.find() || upperExists.find() || digitExists.find()) {
+                bool = true;
+            }
+        }
+            return bool;
+    }
 }
