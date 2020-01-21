@@ -13,8 +13,9 @@ public class Main {
         password = input.nextLine();
 
         try {
+            test.isPasswordValid(password);
             System.out.println("passwordIsOk: " + test.passwordIsOk(password));
-            System.out.println("isPasswordValid: " + test.isPasswordValid(password));
+
         }
         catch (IllegalArgumentException e){
             e.printStackTrace();
